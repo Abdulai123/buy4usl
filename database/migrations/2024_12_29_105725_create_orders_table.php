@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();  // Primary key for the order
             $table->uuid('ref')->unique();  // Unique reference ID (UUID)
             $table->unsignedBigInteger('user_id');  // Foreign key to users table
-            $table->string('shein_url');  // URL of the product on Shein
+            $table->json('shein_url');  // URL of the product on Shein
+            $table->integer('items')->default(1);
             $table->decimal('price_from_shein', 10, 2);  // Price from Shein (in original currency)
             $table->decimal('price_in_nle', 10, 2);  // Price in NLE (converted from Shein price)
             $table->decimal('total_cost', 10, 2);  // Total cost including delivery

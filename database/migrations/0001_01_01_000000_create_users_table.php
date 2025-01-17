@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();  // Primary key
             $table->string('first_name');  // First name of the user
             $table->string('last_name');  // Last name of the user
-            $table->string('username');  // Username of the user
             $table->string('phone_number');  // Phone number of the user
+            $table->string('username');  // Phone number of the user
             $table->decimal('balance', 10, 2)->default(0.00);  // Balance of the user
             $table->string('email')->unique();  // Unique email address
             $table->timestamp('email_verified_at')->nullable();  // Email verification timestamp
             $table->string('password');  // User's password
             $table->rememberToken();  // Token for "remember me" functionality
-            $table->string('referral_name')->nullable();  // Name of the person who referred the user (nullable)
+            $table->string('referral_code')->nullable();  // Name of the person who referred the user (nullable)
             $table->decimal('referred_balance', 10, 2)->default(0.00);  // The balance from referral (nullable and defaults to 0.00)
             $table->timestamps();  // Timestamps for created_at and updated_at
         });

@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     public function referrals()
     {
-        return $this->hasMany(User::class, 'referral_name');
+        return $this->hasMany(Referral::class, 'referrer_id');
     }
 
     public function orders()
@@ -56,5 +56,9 @@ class User extends Authenticatable
     public function notifications()
     {
         return $this->hasMany(Notification::class);
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReferralRequest;
 use App\Http\Requests\UpdateReferralRequest;
 use App\Models\Referral;
+use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class ReferralController extends Controller
 {
@@ -14,6 +17,22 @@ class ReferralController extends Controller
     public function index()
     {
         //
+    }
+
+
+public function updateReferralCode(Request $request)
+    {
+        // Validate the referral code (optional)
+        $request->validate([
+            'referral_name' => 'required|string|max:255',
+        ]);
+
+        // Update the referral code
+        $user = auth()->user();  // Get the logged-in user
+        $user->referral_name = $request->referral_name;
+        $user->save();  // Save the updated referral code
+
+        return back()->with('success', 'Referral code updated successfully!');
     }
 
     /**

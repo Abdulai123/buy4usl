@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('referrer_id')  // Referrer user ID (the person who referred)
             ->nullable()
                 ->constrained('users')  // This references the 'users' table
-                ->onDelete('set null');  // If referrer is deleted, this field becomes null
+                ->onDelete('cascade');  // If referrer is deleted, this field becomes null
             $table->decimal('balance', 10, 2)->default(0.00);  // Balance (in decimal format, with two decimal points)
             $table->timestamps();  // Timestamps for created_at and updated_at
         });

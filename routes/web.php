@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
 Route::get('/about', function () {
     return view('about');
 });
@@ -19,13 +19,15 @@ Route::get('/create-order', function () {
     return view('create-order');
 });
 
-Route::get('/orders', [UserController::class, 'showOrders'])->name('orders');
+//Route::get('/orders', [UserController::class, 'showOrders'])->name('orders');
 Route::post('/order/create', [OrderController::class, 'store'])->name('orders.store');
+Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 
 
 Route::get('/notifications', [UserController::class, 'showNotifications'])->name('notifications');
-Route::get('/notifications/read', [UserController::class, 'notificationRead'])->name('notifications.markAsRead');
+Route::get('/referrals', [UserController::class, 'showReferrals'])->name('referrals');
 
+Route::post('/update-referral-code', [ReferralController::class, 'updateReferralCode'])->name('update.referral.code');
 
 
 Route::post('/signup', [UserController::class, 'register'])->name('signup');
